@@ -11,44 +11,96 @@ function Navbar({ decklist, setList }) {
     function toggleDeck() {
         setShowDeck(!showDeck);
     }
-    
+
+    // Group cards by type
+    const groupedDeck = decklist.reduce((groups, card) => {
+        if (!groups[card.type]) {
+            groups[card.type] = [];
+        }
+
+        groups[card.type].push(card);
+
+        return groups;
+    }, {});
+
     return (
         <nav className="navbar">
+
             <div className="left">
                 <h2>LOGO HERE</h2>
             </div>
+
             <div className="middle">
                 <Link to="/" className="links">
                     Home
                 </Link>
-                <Link to="/deck" className='links'>
+
+                <Link to="/deck" className="links">
                     Decklist
                 </Link>
+
                 <Link to="/about" className="links">
                     About
                 </Link>
             </div>
+
             <div className="right">
+
                 <button className="deck-button" onClick={toggleDeck}>
                     View Deck List
                 </button>
+
                 {showDeck && (
                     <div className="deck-preview">
+
                         <h2>Current Decklist</h2>
-                        {decklist.length === 0 ? (<p className="empty-deck">Your deck is empty.</p>) 
-                        : (decklist.map((card) => (
-                                <div className="deck-card" key={card.name}>    
-                                    <span>
-                                        {card.name} x{card.qty}
-                                    </span>
-                                    <div className="quantity-buttons">
-                                        <button onClick={() => subCard(card)}>-</button>
-                                        <button onClick={() => addCard(card)}>+</button>
-                                    </div>
-                                </div>)))}
+
+                        {decklist.length === 0 ? (
+                            <p className="empty-deck">
+                                Your deck is empty.
+                            </p>
+                        ) : (
+
+                            Object.entries(groupedDeck).map(([type, cards]) => (
+                                <div className="deck-category" key={type}>
+
+                                    <h3>{type}</h3>
+
+                                    {cards.map((card) => (
+                                        <div
+                                            className="deck-card"
+                                            key={card.name}
+                                        >
+                                            <span>
+                                                {card.name} x{card.qty}
+                                            </span>
+
+                                            <div className="quantity-buttons">
+                                                <button
+                                                    onClick={() => subCard(card)}
+                                                >
+                                                    -
+                                                </button>
+
+                                                <button
+                                                    onClick={() => addCard(card)}
+                                                >
+                                                    +
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))}
+
+                                </div>
+                            ))
+
+                        )}
+
                     </div>
                 )}
+
             </div>
+
         </nav>
     );
 }
