@@ -33,7 +33,7 @@ export default function Home({ decklist, setList, onCardSelect }) {
     useEffect(() => {
         async function loadInitialCards() {
             const randomCards =
-                "https://api.riftcodex.com/cards?size=40&set_id=ogn&sort=collector_number";
+                "https://api.riftcodex.com/cards?size=100&new=true&sort=collector_number";
 
             try {
                 const data = await searchDefault(randomCards);
