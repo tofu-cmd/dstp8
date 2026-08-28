@@ -212,10 +212,21 @@
 }
 
 @media (max-width: 680px) {
+  .card-modal-backdrop {
+    place-items: initial;
+    align-items: flex-start;
+    justify-items: center;
+    padding: max(0.75rem, env(safe-area-inset-top)) max(0.75rem, env(safe-area-inset-right)) max(0.75rem, env(safe-area-inset-bottom)) max(0.75rem, env(safe-area-inset-left));
+  }
+
   .card-modal {
     grid-template-columns: 1fr;
+    width: 100%;
     max-width: 34rem;
-    max-height: none;
+    max-height: calc(100dvh - max(0.75rem, env(safe-area-inset-top)) - max(0.75rem, env(safe-area-inset-bottom)));
+    margin: 0 auto;
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .card-modal-art {
@@ -237,7 +248,12 @@
 
 @media (max-width: 410px) {
   .card-modal-backdrop {
-    padding: 0.5rem;
+    align-items: flex-start;
+    padding: max(0.5rem, env(safe-area-inset-top)) max(0.5rem, env(safe-area-inset-right)) max(0.5rem, env(safe-area-inset-bottom)) max(0.5rem, env(safe-area-inset-left));
+  }
+
+  .card-modal {
+    max-height: calc(100dvh - max(0.5rem, env(safe-area-inset-top)) - max(0.5rem, env(safe-area-inset-bottom)));
   }
 
   .card-detail-list {

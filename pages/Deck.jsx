@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { search } from '../scripts/Riftbound';
 
 
@@ -9,7 +9,36 @@ import '../styles/Fancy.css'
 
 export default function Deck({ decklist, setList, onCardSelect }) {
     const [cardData, setCardData] = useState([]);
+    const [activeSection, setActiveSection] = useState('search');
     const { addCard, subCard } = useDeck(decklist, setList);
+
+    useEffect(() => {
+        let frameId;
+
+        function updateActiveSection() {
+            frameId = window.requestAnimationFrame(() => {
+                const deckSection = document.getElementById('my-deck-section');
+                if (!deckSection) return;
+
+                const pivot = window.innerHeight * 0.42;
+                setActiveSection(deckSection.getBoundingClientRect().top <= pivot ? 'deck' : 'search');
+            });
+        }
+
+        updateActiveSection();
+        window.addEventListener('scroll', updateActiveSection, { passive: true });
+        window.addEventListener('resize', updateActiveSection);
+
+        return () => {
+            window.cancelAnimationFrame(frameId);
+            window.removeEventListener('scroll', updateActiveSection);
+            window.removeEventListener('resize', updateActiveSection);
+        };
+    }, []);
+
+    function jumpToSection(sectionId) {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 
     function countCards(){
         let count = 0;
@@ -36,7 +65,8 @@ return (
         <div className="deck-builder">
 
             {/* Search Results */}
-            <section className="deck-section">
+                        <section id="search-results-section" className="deck-section">
+
                 <h2>Search Results</h2>
 
                 {cardData.length > 0 ? (
@@ -71,7 +101,8 @@ return (
 
 
             {/* Deck */}
-            <section className="deck-section my-deck">
+                        <section id="my-deck-section" className="deck-section my-deck">
+
                 <h2>My Deck</h2>
                 <p>Cards in deck: {countCards()}/40</p>
 
@@ -100,7 +131,17 @@ return (
                 )}
             </section>
 
-        </div>
+                </div>
+
+        <button
+            type="button"
+            className={`mobile-section-jump ${activeSection === 'deck' ? 'is-top' : 'is-bottom'}`}
+            onClick={() => jumpToSection(activeSection === 'deck' ? 'search-results-section' : 'my-deck-section')}
+            aria-label={activeSection === 'deck' ? 'Jump to Search Results' : 'Jump to My Deck'}
+        >
+            {activeSection === 'deck' ? '↑ Search Results' : '↓ My Deck'}
+        </button>
     </>
 );
+
 }

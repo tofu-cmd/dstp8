@@ -27,6 +27,7 @@ function Card(props){
             <div className="card-info">
                 <p>{props.type }</p>
                 <h2>{props.name}</h2>
+                <p>{props.text}</p>
                 <div className='btn-controls'>
                     <button type="button" onClick={(event) => handleQuantityChange(event, props.subFunc)} aria-label={`Remove one ${props.name} from deck`}>-</button>
                     {props.qty > 0 && <span className="card-quantity" aria-label={`${props.qty} copies in deck`}>{props.qty}</span>}
