@@ -21,7 +21,7 @@ export default function useDeck(decklist, setList) {
             setList(newDeck);
         }
         else if (existingCard.qty < 3) {
-            let count = 0;
+            const count = decklist.reduce((total, card) => total + card.qty, 0);
             for(let i=0; i<decklist.length; i++){
                 count += decklist[i].qty;
             }
