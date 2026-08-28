@@ -1,0 +1,205 @@
+.deck-builder {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  align-items: start;
+  gap: clamp(1rem, 2vw, 1.55rem);
+  width: min(100% - 2.5rem, 96rem);
+  margin: 0 auto;
+}
+
+.deck-section {
+  position: relative;
+  min-width: 0;
+  min-height: 38rem;
+  padding: clamp(0.9rem, 1.7vw, 1.4rem);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 0.62rem;
+  background:
+    linear-gradient(150deg, rgba(27, 51, 66, 0.79), rgba(9, 21, 31, 0.96) 58%),
+    var(--surface);
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.065);
+}
+
+.deck-section::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4.6rem;
+  height: 0.18rem;
+  content: '';
+  background: linear-gradient(90deg, var(--blue-400), var(--gold-300), transparent);
+}
+
+.deck-section > h2 {
+  margin: 0;
+  padding: 0.08rem 0 0.9rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--paper-50);
+  font-family: var(--display);
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  font-weight: 400;
+  letter-spacing: 0.035em;
+  line-height: 1.2;
+}
+
+.deck-section > h2 + p {
+  margin: 0;
+  padding: 0.65rem 0 0.8rem;
+  color: var(--gold-300);
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.deck-section:not(.my-deck) .card-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.my-deck {
+  background:
+    linear-gradient(155deg, rgba(64, 52, 31, 0.4), rgba(12, 25, 35, 0.97) 53%),
+    var(--surface);
+}
+
+.my-deck::before {
+  background: linear-gradient(90deg, var(--gold-300), var(--blue-400), transparent);
+}
+
+.deck-section .empty-message {
+  margin: 1.5rem 0 0;
+  padding: 2.5rem 1rem;
+  border: 1px dashed rgba(218, 198, 149, 0.3);
+  border-radius: 0.35rem;
+  color: var(--text-muted);
+  background: rgba(3, 12, 19, 0.26);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.deck-section .empty-message::before {
+  display: block;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin: 0 auto 0.8rem;
+  border: 1px solid rgba(230, 203, 133, 0.55);
+  border-radius: 50%;
+  content: '';
+  box-shadow: inset 0 0 0 5px rgba(15, 35, 48, 0.8);
+}
+
+/* The deck route loads its own search bar stylesheet, so its component styling is repeated here. */
+.searchBar {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 0.55rem;
+  width: min(100% - 2.5rem, 62rem);
+  margin: clamp(1.5rem, 3vw, 3.2rem) auto clamp(1.25rem, 2.5vw, 2.25rem);
+  padding: clamp(1.15rem, 2.5vw, 1.7rem);
+  border: 1px solid var(--line);
+  border-radius: 0.56rem;
+  background: linear-gradient(105deg, rgba(22, 43, 57, 0.92), rgba(12, 25, 35, 0.92));
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.searchBar::before {
+  position: absolute;
+  top: -1px;
+  right: 16%;
+  left: 16%;
+  height: 1px;
+  content: '';
+  background: linear-gradient(90deg, transparent, var(--gold-300), var(--blue-400), transparent);
+}
+
+.searchBar label {
+  grid-column: 1 / -1;
+  margin: 0 0 0.18rem;
+  color: var(--gold-300);
+  font-family: var(--display);
+  font-size: clamp(1.08rem, 1.7vw, 1.32rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.searchBar input {
+  width: 100%;
+  min-height: 2.85rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid rgba(218, 198, 149, 0.29);
+  border-radius: 0.32rem;
+  outline: none;
+  color: var(--paper-50);
+  background: rgba(3, 12, 19, 0.63);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.16);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+
+.searchBar input:focus {
+  border-color: var(--gold-300);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.18), 0 0 0 3px rgba(201, 166, 93, 0.12);
+}
+
+.searchBar button {
+  min-height: 2.85rem;
+  color: #fff5d7;
+  border-color: var(--gold-400);
+  background: linear-gradient(135deg, #a77b32, #6c4a19);
+}
+
+@media (max-width: 1180px) {
+  .deck-builder {
+    grid-template-columns: 1fr;
+    width: min(100% - 2.25rem, 70rem);
+  }
+
+  .deck-section {
+    min-height: 0;
+  }
+
+  .deck-section:not(.my-deck) .card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .deck-builder {
+    width: min(100% - 1.5rem, 70rem);
+  }
+
+  .deck-section:not(.my-deck) .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .searchBar {
+    grid-template-columns: 1fr;
+    width: min(100% - 1.5rem, 36rem);
+    gap: 0.7rem;
+  }
+
+  .searchBar button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 430px) {
+  .deck-section {
+    padding: 0.8rem;
+  }
+
+  .deck-section:not(.my-deck) .card-grid {
+    grid-template-columns: 1fr;
+  }
+}

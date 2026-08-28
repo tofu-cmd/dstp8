@@ -1,0 +1,179 @@
+.searchBar {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 0.55rem;
+  width: min(100% - 2.5rem, 62rem);
+  margin: clamp(1.5rem, 3vw, 3.2rem) auto clamp(1.25rem, 2.5vw, 2.25rem);
+  padding: clamp(1.15rem, 2.5vw, 1.7rem);
+  border: 1px solid var(--line);
+  border-radius: 0.56rem;
+  background:
+    linear-gradient(105deg, rgba(22, 43, 57, 0.92), rgba(12, 25, 35, 0.92)),
+    var(--surface);
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.searchBar::before {
+  position: absolute;
+  top: -1px;
+  right: 16%;
+  left: 16%;
+  height: 1px;
+  content: '';
+  background: linear-gradient(90deg, transparent, var(--gold-300), var(--blue-400), transparent);
+}
+
+.searchBar label {
+  grid-column: 1 / -1;
+  margin: 0 0 0.18rem;
+  color: var(--gold-300);
+  font-family: var(--display);
+  font-size: clamp(1.08rem, 1.7vw, 1.32rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.searchBar input {
+  width: 100%;
+  min-height: 2.85rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid rgba(218, 198, 149, 0.29);
+  border-radius: 0.32rem;
+  outline: none;
+  color: var(--paper-50);
+  background: rgba(3, 12, 19, 0.63);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.16);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.searchBar input:hover {
+  border-color: rgba(230, 203, 133, 0.6);
+}
+
+.searchBar input:focus {
+  border-color: var(--gold-300);
+  background: rgba(5, 16, 25, 0.88);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.18), 0 0 0 3px rgba(201, 166, 93, 0.12);
+}
+
+.searchBar button {
+  min-height: 2.85rem;
+  padding-inline: clamp(1rem, 2vw, 1.45rem);
+  color: #fff5d7;
+  border-color: var(--gold-400);
+  background: linear-gradient(135deg, #a77b32, #6c4a19);
+  box-shadow: inset 0 1px 0 rgba(255, 245, 215, 0.25), 0 8px 18px rgba(0, 0, 0, 0.24);
+}
+
+.searchBar button:hover {
+  border-color: #f0d88f;
+  background: linear-gradient(135deg, #bd9345, #7b561e);
+  box-shadow: inset 0 1px 0 rgba(255, 250, 229, 0.3), 0 11px 22px rgba(0, 0, 0, 0.3), 0 0 14px rgba(212, 175, 91, 0.16);
+}
+
+@media (max-width: 560px) {
+  .searchBar {
+    grid-template-columns: 1fr;
+    width: min(100% - 1.5rem, 36rem);
+    gap: 0.7rem;
+  }
+
+  .searchBar button {
+    width: 100%;
+  }
+}
+
+.home-empty-message {
+  width: min(100% - 2.5rem, 40rem);
+  margin: 0 auto;
+  padding: 2.6rem 1rem;
+  border: 1px dashed rgba(218, 198, 149, 0.3);
+  border-radius: 0.42rem;
+  color: var(--text-muted);
+  background: rgba(6, 18, 27, 0.55);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: min(100% - 2.5rem, 92rem);
+  margin: 1.1rem auto 0;
+  padding: 0.72rem;
+  border: 1px solid var(--line);
+  border-radius: 0.46rem;
+  background: rgba(10, 24, 34, 0.74);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.pagination > button,
+.pagination-page {
+  min-width: 2.2rem;
+  min-height: 2.15rem;
+  padding: 0.4rem 0.68rem;
+  font-size: 0.61rem;
+}
+
+.pagination-pages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.pagination-page {
+  border-color: rgba(218, 198, 149, 0.23);
+  color: #b8c5c9;
+  background: rgba(4, 14, 21, 0.5);
+}
+
+.pagination-page:hover {
+  color: var(--paper-50);
+}
+
+.pagination-page.active,
+.pagination-page[aria-current='page'] {
+  color: #fff6d9;
+  border-color: var(--gold-300);
+  background: linear-gradient(135deg, #a77b32, #6c4a19);
+  box-shadow: inset 0 1px 0 rgba(255, 245, 215, 0.22), 0 0 12px rgba(212, 175, 91, 0.12);
+}
+
+.pagination button:disabled {
+  border-color: rgba(218, 198, 149, 0.13);
+  color: #64747c;
+  background: rgba(5, 14, 20, 0.38);
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.68;
+  transform: none;
+}
+
+@media (max-width: 600px) {
+  .pagination {
+    flex-wrap: wrap;
+    width: min(100% - 1.5rem, 40rem);
+  }
+
+  .pagination-pages {
+    order: -1;
+    width: 100%;
+  }
+
+  .pagination > button {
+    flex: 1;
+  }
+
+  .home-empty-message {
+    width: min(100% - 1.5rem, 40rem);
+  }
+}

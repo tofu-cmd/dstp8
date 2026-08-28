@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Marcellus&display=swap');
+
+:root {
+  --ink-950: #071019;
+  --ink-900: #0c1722;
+  --ink-800: #132231;
+  --ink-700: #1a2e3e;
+  --paper-50: #f8f5ee;
+  --paper-100: #eee8db;
+  --paper-200: #d9cfbd;
+  --gold-300: #e6cb85;
+  --gold-400: #c9a65d;
+  --gold-500: #a97d37;
+  --gold-600: #76501d;
+  --blue-400: #75b8d9;
+  --blue-500: #3c91bd;
+  --text: #c9d0d4;
+  --text-muted: #8797a2;
+  --heading: #f8f5ee;
+  --line: rgba(218, 198, 149, 0.17);
+  --line-strong: rgba(225, 198, 121, 0.42);
+  --surface: rgba(13, 27, 39, 0.82);
+  --surface-raised: rgba(20, 38, 52, 0.9);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.34);
+  --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.24);
+  --sans: 'Manrope', 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+  --display: 'Marcellus', Georgia, serif;
+  --mono: 'DM Mono', 'SFMono-Regular', Consolas, monospace;
+  color: var(--text);
+  background: var(--ink-950);
+  font-family: var(--sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--ink-950);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 12% -5%, rgba(71, 139, 174, 0.25), transparent 29rem),
+    radial-gradient(circle at 93% 15%, rgba(180, 137, 59, 0.17), transparent 27rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    var(--ink-950);
+  background-size: auto, auto, 28px 28px, 28px 28px, auto;
+}
+
+body::before {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  content: '';
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(2, 7, 12, 0.25), transparent 18%, transparent 82%, rgba(2, 7, 12, 0.25));
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  min-height: 2.6rem;
+  margin: 0;
+  padding: 0.66rem 1.05rem;
+  color: var(--paper-50);
+  border: 1px solid rgba(218, 198, 149, 0.36);
+  border-radius: 0.35rem;
+  background: linear-gradient(135deg, rgba(38, 59, 72, 0.98), rgba(16, 31, 42, 0.98));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09), 0 6px 16px rgba(0, 0, 0, 0.2);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease, color 180ms ease;
+}
+
+button:hover {
+  color: #fffaf0;
+  border-color: var(--gold-300);
+  background: linear-gradient(135deg, #365a6e, #193344);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 10px 22px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(216, 181, 102, 0.1);
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--gold-300);
+  outline-offset: 3px;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--heading);
+}
+
+#root {
+  width: 100%;
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+header {
+  position: sticky;
+  z-index: 20;
+  top: 0;
+}
+
+footer {
+  margin-top: 3.5rem;
+}
+
+@media (max-width: 720px) {
+  footer {
+    margin-top: 2.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
